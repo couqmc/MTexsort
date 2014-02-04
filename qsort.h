@@ -1,4 +1,5 @@
-/* Our program has two phases. In the first phase, we divide the input file into
+/* This is multi-threaded verison.
+ * Our program has two phases. In the first phase, we divide the input file into
  * "runs" and sort those runs in memory. In the second phase, we merge those runs
  * into a single sorted output file */
 #include<future>

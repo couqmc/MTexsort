@@ -1,4 +1,5 @@
-/* Our program has two phases. In the first phase, we divide the input file into
+/* This is multi-threaded verison.
+ * Our program has two phases. In the first phase, we divide the input file into
  * "runs" and sort those runs in memory. In the second phase, we merge those runs
  * into a single sorted output file */
 #include "qsort.h"
@@ -161,7 +162,7 @@ void inMemorySort( PhaseOneInfo * const info, int bufIndex)
 int phase1(char * inputFileName)
 {
 	int numberOfBuffers = 2;
-	size_t inBufferSize = 100000020; /* the size of the input buffer which determine 
+	size_t inBufferSize = 100000020; /* the size of the input buffer which determines 
                                           * the size of each run */
 	size_t outBufferSize = 10000000; /* the size of the output buffer */
 	PhaseOneInfo * info;
@@ -306,6 +307,7 @@ inline void getNext(PhaseTwoInfo * info,int index  )
 			if (recordEnd == bufferEnd  ) /* we have reached to the end of the buffer */
 			{
 				info->endOfBuffer[index] == true;
+				parRec->partial = false;
 			}
 			else /* we have not reached to the end of the buffer */
 			{
